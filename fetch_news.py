@@ -8,12 +8,17 @@ from typing import List, Dict
 from difflib import SequenceMatcher
 
 
-# RSS 源配置
+# RSS 源配置（已验证可用 - 2026-09-30）
 RSS_SOURCES = [
-    ("腾讯新闻", "https://news.qq.com/gn24/rss_news.xml"),
-    ("网易新闻", "https://news.163.com/rss/news.html"),
-    ("新浪新闻", "https://www.sina.com.cn/rss/news.html"),
-    ("澎湃新闻", "https://www.thepaper.cn/rss"),
+    # 中文源
+    ("Solidot", "https://www.solidot.org/index.rss"),
+    ("少数派", "https://sspai.com/feed"),
+    # 英文源（国际热点）
+    ("NPR News", "https://feeds.npr.org/1001/rss.xml"),
+    ("TechCrunch", "https://techcrunch.com/feed/"),
+    ("The Verge", "https://www.theverge.com/rss/index.xml"),
+    ("Ars Technica", "https://feeds.arstechnica.com/arstechnica/index"),
+    ("Wired", "https://www.wired.com/feed/rss"),
 ]
 
 
@@ -58,13 +63,18 @@ def get_news(days: int = 7, max_news: int = 30) -> List[Dict]:
 
 
 def parse_date(date_str: str) -> datetime:
-    """解析 RSS 日期格式"""
+    """解析 RSS 日期格式，返回 naive datetime（统一时区）"""
     from email.utils import parsedate_to_datetime
     try:
-        return parsedate_to_datetime(date_str)
+        dt = parsedate_to_datetime(date_str)
+        # 转换为 naive datetime（去掉时区信息）
+        return dt.replace(tzinfo=None)
     except:
         try:
-            return datetime.fromisoformat(date_str)
+            dt = datetime.fromisoformat(date_str)
+            if dt.tzinfo is not None:
+                dt = dt.replace(tzinfo=None)
+            return dt
         except:
             return None
 

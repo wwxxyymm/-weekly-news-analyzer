@@ -10,6 +10,7 @@ from typing import List, Dict
 
 # 停用词表（常见无意义词）
 STOPWORDS = set([
+    # 中文停用词
     "的", "了", "是", "在", "我", "有", "和", "就", "不", "人",
     "都", "一", "一个", "上", "也", "很", "到", "说", "要",
     "去", "你", "会", "着", "没有", "看", "好", "自己", "这",
@@ -21,6 +22,22 @@ STOPWORDS = set([
     "如何", "是否", "有些", "这些", "那些", "其中", "另外",
     "记者", "报道", "表示", "称", "据悉", "电", "日",
     "月", "年", "时", "分", "秒",
+    # 英文停用词
+    "the", "a", "an", "and", "or", "but", "in", "on", "at",
+    "to", "for", "of", "with", "by", "from", "as", "is",
+    "was", "are", "were", "been", "be", "have", "has", "had",
+    "do", "does", "did", "will", "would", "could", "should",
+    "may", "might", "must", "can", "this", "that", "these",
+    "those", "it", "its", "they", "them", "their", "we", "us",
+    "our", "you", "your", "he", "him", "his", "she", "her",
+    "who", "which", "what", "when", "where", "why", "how",
+    "not", "no", "so", "if", "then", "than", "up", "out",
+    "all", "any", "each", "every", "both", "few", "more",
+    "most", "other", "some", "such", "only", "own", "same",
+    "just", "also", "now", "here", "there", "about", "into",
+    "through", "during", "before", "after", "above", "below",
+    "between", "under", "again", "further", "once", "off",
+    "over", "because", "while", "however", "although",
 ])
 
 
