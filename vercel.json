@@ -2,12 +2,8 @@
   "version": 2,
   "builds": [
     {
-      "src": "api/**/*.py",
+      "src": "api/*.py",
       "use": "@vercel/python"
-    },
-    {
-      "src": "output/**",
-      "use": "static"
     }
   ],
   "routes": [
@@ -20,6 +16,14 @@
       "dest": "api/latest.py"
     },
     {
+      "src": "/wordcloud/(.*)",
+      "dest": "output/wordcloud/$1"
+    },
+    {
+      "src": "/weekly/(.*)",
+      "dest": "output/weekly/$1"
+    },
+    {
       "src": "/(.*)",
       "dest": "output/index.html"
     }
@@ -29,5 +33,8 @@
       "path": "/api/generate",
       "schedule": "0 8 * * 6"
     }
-  ]
+  ],
+  "python": {
+    "requirements": "requirements.txt"
+  }
 }
