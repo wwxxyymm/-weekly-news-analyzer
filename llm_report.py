@@ -7,7 +7,7 @@ import requests
 from typing import List, Dict
 
 
-MINIMAX_API_KEY = os.getenv("MINIMAX_API_KEY")
+MINIMAX_API_KEY = os.getenv("MINIMAX_API_KEY", "").strip()
 MINIMAX_BASE_URL = "https://api.minimax.chat/v1"
 
 
